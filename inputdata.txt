@@ -1,4 +1,4 @@
-cp
+run_5000_points_openmp
 Ar
 100
 35000

@@ -1,0 +1,14 @@
+initialize velocities:
+    primeiro loop:
+        .Necessario desfazer para retirar a dependencia de read after write para poder paralelizar o loop
+
+RELATORIO
+cOMPUTE ACCELERATIONS
+Your code seems to be a molecular dynamics simulation, where you are computing forces between particles and then accumulating the forces to get accelerations. Parallelizing such simulations can be tricky, and race conditions are a common concern.
+
+One improvement you can make is to use a reduction clause instead of the critical section. OpenMP provides a reduction clause that is specifically designed for 
+this kind of scenario, where each thread has a private copy of a variable, and the values need to be combined at the end of the parallel region. 
+This can be more efficient than using a critical section.
+
+The reduction(+:a_copy[:N][:3]) clause takes care of summing up the private copies of a_copy for each thread into the shared a_copy array at the end of the 
+parallel region. This can potentially improve performance compared to using a critical section, as it allows for better parallelization.

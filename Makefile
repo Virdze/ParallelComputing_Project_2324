@@ -1,6 +1,6 @@
 CC = gcc
 SRC = src/
-CFLAGS = -g -fno-omit-frame-pointer
+CFLAGS = -Wall -O2 -march=native -mtune=native -flto -fopenmp
 
 .DEFAULT_GOAL = MD.exe
 
